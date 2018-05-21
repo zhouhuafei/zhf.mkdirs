@@ -2,9 +2,9 @@ const fs = require('fs');
 const path = require('path');
 
 // 创建多级目录异步
-function mkdirs(dirname, callback) {
-    if (!dirname) {
-        console.log('路径参数不存在(Path parameters do not exist)');
+function mkdirs(dirname = '', callback) {
+    if (dirname === '') {
+        callback(new Error('路径参数不存在(Path parameters do not exist)'), null);
         return;
     }
     fs.stat(dirname, function (error) {
@@ -13,38 +13,24 @@ function mkdirs(dirname, callback) {
                 fs.mkdir(dirname, callback);
             });
         } else { // 文件夹存在，报错
-            callback(new Error('file already exists'), null);
+            callback(new Error('目录已经存在(Directory already exists)'), null);
         }
     });
 }
 
-// 创建多级目录同步
-function mkdirsSync(dirname) {
+// 创建多级目录同步，目录已经存在返回一个错误，目录不存在创建成功之后返回true。
+function mkdirsSync(dirname = '') {
+    if (dirname === '') {
+        return new Error('路径参数不存在(Path parameters do not exist)');
+    }
     if (fs.existsSync(dirname)) {
+        return new Error('目录已经存在(Directory already exists)');
+    }
+    if (mkdirsSync(path.dirname(dirname))) {
+        fs.mkdirSync(dirname);
         return true;
-    } else {
-        if (mkdirsSync(path.dirname(dirname))) {
-            fs.mkdirSync(dirname);
-            return true;
-        }
     }
 }
-
-/*
-function mkdirsSync(dirname) {
-    if (!dirname) {
-        console.log('路径参数不存在(Path parameters do not exist)');
-        return;
-    }
-    if (fs.statSync(dirname) !== undefined) { // 文件夹不存在，则创建文件夹
-        if (mkdirsSync(path.dirname(dirname)) === undefined) {
-            fs.mkdirSync(dirname);
-        }
-    } else { // 文件夹存在
-        return new Error('file already exists');
-    }
-}
-*/
 
 module.exports.mkdirs = mkdirs;
 module.exports.mkdirsSync = mkdirsSync;
