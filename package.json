@@ -1,7 +1,7 @@
 {
-    "name": "zhf.json-to-array",
+    "name": "zhf.mkdirs",
     "version": "1.0.0",
-    "description": "json对象转成数组",
+    "description": "创建多级目录",
     "main": "dist/index.min.js",
     "scripts": {
         "codeLint": "eslint --ext .js,.vue,.html ./",
@@ -12,14 +12,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/zhouhuafei/zhf.json-to-array.git"
+        "url": "git+https://github.com/zhouhuafei/zhf.mkdirs.git"
     },
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/zhouhuafei/zhf.json-to-array/issues"
+        "url": "https://github.com/zhouhuafei/zhf.mkdirs/issues"
     },
-    "homepage": "https://github.com/zhouhuafei/zhf.json-to-array#readme",
+    "homepage": "https://github.com/zhouhuafei/zhf.mkdirs#readme",
     "devDependencies": {
         "babel-eslint": "^8.0.2",
         "babel-preset-env": "^1.6.0",

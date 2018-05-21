@@ -1,5 +1,6 @@
-# json对象转成数组
+# 创建多级目录
 ```
-const jsonToArray = require('zhf.json-to-array');
-console.log(jsonToArray({a: 'hello', b: 'world'})); // [{key: 'a', value: 'hello'}, {key: 'b', value: 'world'}]
+const mkdirs = require('zhf.mkdirs');
+
+
 ```

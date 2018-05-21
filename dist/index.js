@@ -1,5 +1,7 @@
-const fs = require('fs');
-const path = require('path');
+'use strict';
+
+var fs = require('fs');
+var path = require('path');
 
 // 创建多级目录异步
 function mkdirs(dirname, callback) {
@@ -24,8 +26,10 @@ function mkdirsSync(dirname) {
         console.log('路径参数不存在(Path parameters do not exist)');
         return;
     }
-    if (fs.statSync(dirname) !== undefined) { // 返回undefined，表示文件夹存在，否则表示不存在
-        if (mkdirsSync(path.dirname(dirname))) { //
+    if (fs.statSync(dirname) !== undefined) {
+        // 返回undefined，表示文件夹存在，否则表示不存在
+        if (mkdirsSync(path.dirname(dirname))) {
+            //
             fs.mkdirSync(dirname);
             return true;
         }
