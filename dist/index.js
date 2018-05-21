@@ -35,9 +35,12 @@ function mkdirsSync() {
     if (fs.existsSync(dirname)) {
         return new Error('目录已经存在(Directory already exists)');
     }
-    if (mkdirsSync(path.dirname(dirname))) {
+    var prevDir = path.dirname(dirname);
+    if (fs.existsSync(prevDir)) {
+        // 上个目录存在
         fs.mkdirSync(dirname);
-        return true;
+    } else {
+        mkdirsSync(prevDir);
     }
 }
 

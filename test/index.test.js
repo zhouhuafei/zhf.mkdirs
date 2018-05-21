@@ -24,10 +24,10 @@ test(`创建多级目录`, () => {
         console.log('同步创建成功1');
     }
     const errorInfo2 = mkdirsSync('./logs/aa2/bb2/cc2');
-    if (errorInfo2 === true) {
-        console.log('同步创建成功2');
-    } else {
+    if (errorInfo2) {
         console.log(errorInfo2);
+    } else {
+        console.log('同步创建成功2');
     }
     expect(true).toEqual(true);
 });
