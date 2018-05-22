@@ -18,19 +18,17 @@ function mkdirs(dirname = '', callback) {
     });
 }
 
-// 创建多级目录同步，目录已经存在返回一个错误，目录不存在创建成功之后返回true。
-function mkdirsSync(dirname = '') {
+// 创建多级目录同步
+function mkdirsSync(dirname) {
     if (dirname === '') {
         return new Error('路径参数不存在(Path parameters do not exist)');
     }
     if (fs.existsSync(dirname)) {
         return new Error('目录已经存在(Directory already exists)');
     }
-    const prevDir = path.dirname(dirname);
-    if (fs.existsSync(prevDir)) { // 上个目录存在
+    if (mkdirsSync(path.dirname(dirname))) {
         fs.mkdirSync(dirname);
-    } else {
-        mkdirsSync(prevDir);
+        return true;
     }
 }
 
